@@ -22,13 +22,12 @@ jobs:
         persist-credentials: false
     - name: Run Clojure Snyk Scan
       id: scan
-      uses: puppetlabs/security-snyk-clojure-action@repo_url_test
+      uses: puppetlabs/security-snyk-clojure-action@fix_name_mismatch
       with:
         snykToken: ${{ secrets.SNYK_TOKEN }}
         snykOrg: 'sectest'
         snykPolicy: '.snyk'
         snykProject: ${{ github.event.repository.name }}
-        repoName: 'https://github.com/${{github.repository}}'
     - name: Check output
       if: steps.scan.outputs.vulns != ''
       run: echo "Vulnerabilities detected; ${{ steps.scan.outputs.vulns }}" && exit 1
