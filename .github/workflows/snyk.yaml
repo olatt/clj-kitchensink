@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - snyk_test
 
 jobs:
  snyk_scan:
@@ -23,9 +24,10 @@ jobs:
       id: scan
       uses: puppetlabs/security-snyk-clojure-action@v2
       with:
-        snykToken: ${{ secrets.SNYK_PE_TOKEN }}
-        snykOrg: 'puppet-enterprise'
+        snykToken: ${{ secrets.SNYK_TOKEN }}
+        snykOrg: 'sectest'
         snykPolicy: '.snyk'
+        snykProject: ${{ github.event.repository.name }}
     - name: Check output
       if: steps.scan.outputs.vulns != ''
       run: echo "Vulnerabilities detected; ${{ steps.scan.outputs.vulns }}" && exit 1
