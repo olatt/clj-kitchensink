@@ -28,6 +28,7 @@ jobs:
         snykOrg: 'sectest'
         snykPolicy: '.snyk'
         snykProject: ${{ github.event.repository.name }}
+        repoName: 'https://github.com/${{github.repository}}'
     - name: Check output
       if: steps.scan.outputs.vulns != ''
       run: echo "Vulnerabilities detected; ${{ steps.scan.outputs.vulns }}" && exit 1
