@@ -22,7 +22,7 @@ jobs:
         persist-credentials: false
     - name: Run Clojure Snyk Scan
       id: scan
-      uses: puppetlabs/security-snyk-clojure-action@default_proj_name
+      uses: puppetlabs/security-snyk-clojure-action@fix_v2
       with:
         snykToken: ${{ secrets.SNYK_TOKEN }}
         snykOrg: 'sectest'
